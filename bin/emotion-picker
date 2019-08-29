@@ -1,0 +1,22 @@
+#!/usr/bin/env ruby
+
+require 'emotion/picker'
+require 'nice-sigint'
+require 'optparse'
+
+OptionParser.new do |opts|
+  opts.banner = 'Usage: emotion-picker [-hv]'
+
+  opts.on('-h', '--help', 'Prints this help') do
+    puts opts
+    exit
+  end
+
+  opts.on('-v', '--version', 'Prints program version') do
+    puts Emotion::Picker::VERSION
+    exit
+  end
+end.parse!
+
+emotion = Emotion::Picker::EmotionPicker.new
+puts "You are feeling #{emotion.pick}"
