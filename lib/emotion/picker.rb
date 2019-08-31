@@ -2,10 +2,11 @@ require 'emotion/picker/version'
 require 'emotion/picker/emotion'
 require 'yaml'
 
-EMOTIONS_FILE = "#{__dir__}/emotions.yml".freeze
-
 module Emotion
   module Picker
+    EMOTIONS_FILE = "#{__dir__}/emotions.yml".freeze
+    private_constant :EMOTIONS_FILE
+
     # Class for choosing an emotion
     class EmotionPicker
       def initialize
@@ -35,6 +36,13 @@ module Emotion
 
         emotions
       end
+    end
+
+    # Shortcut method for getting a random emotion
+    # @return [Emotion]
+    def self.pick
+      picker = EmotionPicker.new
+      picker.pick
     end
   end
 end

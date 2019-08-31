@@ -18,5 +18,4 @@ OptionParser.new do |opts|
   end
 end.parse!
 
-emotion = Emotion::Picker::EmotionPicker.new
-puts "You are feeling #{emotion.pick}"
+puts "You are feeling #{Emotion::Picker.pick}"
