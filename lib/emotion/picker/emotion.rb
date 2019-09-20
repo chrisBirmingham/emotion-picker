@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Emotion
   module Picker
     # DAO class for representing an emotion
