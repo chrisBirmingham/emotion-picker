@@ -19,7 +19,7 @@ module Emotion
       # @return [Emotion]
       def pick
         rand = Random.new
-        index = rand.rand(@emotions.length - 1)
+        index = rand.rand(0..@emotions.length)
         @emotions[index]
       end
 
