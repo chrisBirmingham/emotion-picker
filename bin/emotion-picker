@@ -1,10 +1,11 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 
 require 'emotion/picker'
 require 'nice-sigint'
 require 'optparse'
 
-OptionParser.new do |opts|
+parser = OptionParser.new do |opts|
   opts.banner = 'Usage: emotion-picker [-hv]'
 
   opts.on('-h', '--help', 'Prints this help') do
@@ -16,6 +17,13 @@ OptionParser.new do |opts|
     puts Emotion::Picker::VERSION
     exit
   end
-end.parse!
+end
+
+begin
+  parser.parse!
+rescue OptionParser::ParseError => e
+  warn e.message
+  abort parser.to_s
+end
 
 puts "You are feeling #{Emotion::Picker.pick}"

@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require 'emotion/picker/version'
 require 'emotion/picker/emotion'
 require 'yaml'
 
 module Emotion
   module Picker
-    EMOTIONS_FILE = "#{__dir__}/emotions.yml".freeze
+    EMOTIONS_FILE = "#{__dir__}/emotions.yml"
     private_constant :EMOTIONS_FILE
 
     # Class for choosing an emotion
@@ -17,7 +19,7 @@ module Emotion
       # @return [Emotion]
       def pick
         rand = Random.new
-        index = rand.rand(@emotions.length - 1)
+        index = rand.rand(0..@emotions.length)
         @emotions[index]
       end
 
