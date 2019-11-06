@@ -3,27 +3,9 @@
 
 require 'emotion/picker'
 require 'nice-sigint'
-require 'optparse'
 
-parser = OptionParser.new do |opts|
-  opts.banner = 'Usage: emotion-picker [-hv]'
+options_parser = Emotion::Picker::Cli.new
+emotions_picker = Emotion::Picker::EmotionPicker.new
 
-  opts.on('-h', '--help', 'Prints this help') do
-    puts opts
-    exit
-  end
-
-  opts.on('-v', '--version', 'Prints program version') do
-    puts Emotion::Picker::VERSION
-    exit
-  end
-end
-
-begin
-  parser.parse!
-rescue OptionParser::ParseError => e
-  warn e.message
-  abort parser.to_s
-end
-
-puts "You are feeling #{Emotion::Picker.pick}"
+options_parser.parse!(ARGV)
+puts "You are feeling #{emotions_picker.pick}"
